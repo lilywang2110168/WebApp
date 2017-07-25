@@ -1,6 +1,7 @@
 let path =      require("path"),
     webpack =   require("webpack");
 
+let APP_DIR = path.resolve(__dirname, 'src/client/components');
 
 module.exports = {
     cache: true,
@@ -40,6 +41,17 @@ module.exports = {
             { test: /\.svg$/,           use: [
                 { loader: "file-loader?prefix=font/" }
             ]}
+        ],
+
+        loaders : [
+
+            {
+                test : /\.jsx?/,
+                include : APP_DIR,
+                loader : 'babel-loader'
+            }
+
+
         ]
     },
     plugins: [

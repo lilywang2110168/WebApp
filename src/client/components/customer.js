@@ -4,7 +4,7 @@
 
 import React, { Component }     from 'react';
 import {Link} from 'react-router';
-
+import {Header} from './header';
 /*************************************************************************/
 
 export class Customer extends Component {
@@ -99,13 +99,14 @@ export class Customer extends Component {
                     <p>{product.name}</p>
                         <img src={product.image}></img>
                     <p>{product.description}</p>
+
                     </a> <br></br></div></div>;
             });
 
         }
 
 
-        return <div className="container">
+        return <div><Header/><div className="container">
                     <div className="row">
                         <div className="col-xs-4"> </div>
                 <div className="col-md-6">
@@ -133,6 +134,6 @@ export class Customer extends Component {
             </div>
             {features}
             {products}
-            </div>
+            </div></div>
     }
 }

@@ -5,11 +5,11 @@
 import React, {Component}     from 'react';
 import { render }               from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory }  from 'react-router'
-import { Header }               from './components/header';
 import { Landing }              from './components/landing';
 import { Customer }                from './components/customer';
 import { Business }               from './components/business';
 import { Product}              from './components/product';
+
 
 
 // Bring bootstrap into the picture
@@ -24,7 +24,6 @@ class MyApp extends Component {
 
     render() {
         return <div>
-            <Header user={this.props.route.user}/>
             {this.props.children}
         </div>;
     }
@@ -74,6 +73,7 @@ render(
             <Route path="/buyer" component={Customer} user={user}/>
             <Route path="/seller" component={Business} user={user}/>
             <Route path="/product/:id" component={Product}/>
+            <Route path="/header"/>
         </Route>
     </Router>,
     document.getElementById('mainDiv')

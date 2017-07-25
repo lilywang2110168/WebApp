@@ -1,17 +1,4 @@
-.navbar-static-top {
-    margin-left: -14px;
-    margin-right: -24px;
-}
 
-.right-nav {
-    text-align: right;
-    padding-top: 10px;
-    padding-right: 20px;
-}
-
-.right-nav a {
-    display: block;
-}
 
 table#gameTable tbody tr:hover {
     background: #6495ed;
@@ -51,4 +38,33 @@ table#gameTable tbody tr:hover {
 .landingButton{
     font-size:50px;
     width:50%
+}
+
+.landingImage {
+    position: relative;
+    width: 100%; /* for IE 6 */
+}
+
+.imageText {
+    position: absolute;
+    top: 200px;
+    left: 100px;
+    width: 100%;
+}
+.imageText2 {
+    position: absolute;
+    top: 250px;
+    left: 100px;
+    width: 100%;
+}
+
+html *
+{
+    font-family:  "Courier", "Courier New","Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+}
+.navbar{
+    font-size:20px
+}
+.navbar-brand{
+    font-size:25px
 }

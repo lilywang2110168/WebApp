@@ -3,6 +3,11 @@
 
 
 import React, { Component } from 'react';
+import Chart from './Chart.js';
+import Map from './map.js';
+import {Header2} from './header2';
+
+
 /*************************************************************************/
 
 export class Product extends Component {
@@ -13,7 +18,6 @@ export class Product extends Component {
         };
 
     }
-
 
     componentDidMount(){
         $.ajax({
@@ -26,21 +30,23 @@ export class Product extends Component {
         });
     }
 
-
-
     render() {
         let analytics;
+
         if(this.state.data){
 
             let  products = this.state.data.features.map((product, index)=> {
                 return <tr key={index}>
                     <th>{product}</th>
-                    <th>4</th>
+                    <th>{this.state.data.featureScores[index]}</th>
+                    <th>{this.state.data.featureSummaries[index]}</th>
                 </tr>;
             });
 
 
-            analytics=<div className="row">
+
+            analytics=
+                <div className="row">
                 <div className="col-xs-4"></div>
                 <div className="col-md-6">
                  <h2>{this.state.data.name}</h2>
@@ -53,16 +59,22 @@ export class Product extends Component {
                         <tr>
                             <th>Feature</th>
                             <th>Score</th>
+                            <th>Summary</th>
                         </tr>
                         </thead>
-                    <tbody>
-                    {products}</tbody> </table>
+
+                        <tbody>
+                    {products}</tbody></table>
+
                     <h3>Demographics</h3>
-                    <p>{this.state.data.graph}</p>
+                   <Map markers={this.state.data.coordinates}/>
+                    <br></br>
+                    <div className="panel panel-default">
+                        <div className="panel-heading">gender comparisons</div>
+                        <div className="panel-body">female reviewers reviewed screen resolution higher</div>
+                    </div>
+                    <div className="row">
+                        <Chart/></div>
                 </div></div>;
         }
-        return <div>
-            {analytics}
-        </div>
-    }
-}
+        return <div><Header2/><div>{analytics}</div></div>}}

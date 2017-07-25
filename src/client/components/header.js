@@ -8,13 +8,6 @@ import md5                      from 'md5';
 
 /*************************************************************************/
 
-export function GravHash(email, size) {
-    let hash = email.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-    hash = hash.toLowerCase();
-    hash = md5(hash);
-    return `https://www.gravatar.com/avatar/${hash}?size=${size}`;
-}
-
 export class Header extends Component {
     constructor(props) {
         super(props);
@@ -27,18 +20,15 @@ export class Header extends Component {
     }
 
     render() {
-        const user = this.props.user.getUser();
-        const right = user.username !== '' ?
-            <div className="header">
-            </div>:
-            <div className="col-xs-4 right-nav">
-        </div>;
 
-        return <nav className="navbar navbar-default navbar-static-top">
-            <div className="col-xs-8">
-                <h2>Amazon Project</h2>
-            </div>
-            {right}
-        </nav>
+        return<div><nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+                <div className="navbar-header">
+                    <a className="navbar-brand" href="#">Amazon project</a>
+                </div>
+                <ul className="nav navbar-nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Buyer</a></li>
+                    <li><a href="#">seller</a></li>
+                </ul></nav></div>
     }
 }
