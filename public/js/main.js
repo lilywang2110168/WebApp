@@ -12421,12 +12421,13 @@ module.exports = MarkerClusterer
 "use strict";
 
 
-exports.__esModule = true;
-var getDisplayName = function getDisplayName(Component) {
-  return Component.displayName || Component.name || (typeof Component === 'string' ? Component : 'Component');
-};
-
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = getDisplayName;
+function getDisplayName(Component) {
+  return Component.displayName || Component.name || (typeof Component === 'string' && Component.length > 0 ? Component : 'Unknown');
+}
 
 /***/ }),
 /* 459 */,
@@ -13541,12 +13542,7 @@ var controlledPropTypes = {
 
   visible: _propTypes2.default.bool,
 
-  zIndex: _propTypes2.default.number,
-
-  reviewerID: _propTypes2.default.string,
-
-
-
+  zIndex: _propTypes2.default.number
 };
 
 var defaultUncontrolledPropTypes = (0, _enhanceElement.addDefaultPrefixToPropTypes)(controlledPropTypes);
@@ -13646,7 +13642,6 @@ var publicMethodMap = {
   getZIndex: function getZIndex(marker) {
     return marker.getZIndex();
   }
-
 };
 
 var controlledPropUpdaterMap = {
