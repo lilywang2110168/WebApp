@@ -28,6 +28,7 @@ export class Product extends Component {
 
     demographics(){
         this.setState({features:false,  demographics:true});
+        console.log("I am in the onClick function");
     }
 
 
@@ -51,7 +52,7 @@ export class Product extends Component {
         if(this.state.data){
 
 
-            if(this.state.data.features){
+            if(this.state.features){
                 this.state.data.features.sort(function(a, b) {
                     return parseFloat(b.popularityScore) - parseFloat(a.popularityScore);
                 });
@@ -78,28 +79,65 @@ export class Product extends Component {
 
                 let comparisonTable;
 
+                for (let i = 0, len =this.state.data.categories.length; i < len; i++) {
+                    let category=this.state.data.categories[i];
+                    if(category.features.length>0){
+
+                       category.features.sort(function(a, b) {
+                            return parseFloat(b.popularityScore) - parseFloat(a.popularityScore);
+                        });
+
+                        comparisonTable=category.features.map((feature, index)=> {
+                            let comparision;
+                            let percentage=feature.numProductsLowerSentiment/(feature.numProductsHigherSentiment+feature.numProductsLowerSentiment);
+                            percentage=percentage*100;
+                            comparision=<th>Defeated {percentage}% </th>;
+
+
+                            return <tr key={index}>
+                                <th>{feature.featureName}</th>
+                                <th>{feature.sentimentScore}</th>
+                                <th>{feature.popularityScore}</th>
+                                <th>{comparision}</th>
+                            </tr>;
+                        });
+
+                        comparisonTable=<table className="table table-striped"><thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Sentiment</th>
+                            <th>Popularity</th>
+                            <th>Comparision</th>
+                        </tr>
+                        </thead>
+                            <tbody>
+                            { comparisonTable}</tbody></table>;
+
+                    }
+                }
+
 
            featuresAnalysis=<div className="row">
-               <div className="col-xs-1"/>
-                <div className="col-xs-3">
+                <div className="col-xs-5">
                     <h2>{this.state.data.title}</h2>
                     <img src={this.state.data.imageUrl}/>
+                    <h3>Comparisons</h3>
                     {comparisonTable}
                 </div>
-                <div className="col-md-7">
+                <div className="col-xs-7">
                     <h3>Features</h3>
                     {featuresTable}</div></div>;}
            else{
-
                 featuresAnalysis=null
             }
 
+
            if(this.state.demographics){
+                console.log("I am here");
 
                let geographic= <div>
                    <h3>Demographics</h3>
-                   <Map markers={this.state.data.coordinates}/></div>;
-
+                   <Map markers={[]}/></div>;
                let gender=<div>
                   <div className="panel panel-default">
                 <div className="panel-heading">gender comparisons</div>

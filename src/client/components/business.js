@@ -188,16 +188,17 @@ export class Business extends Component {
                     <div className="form-group">
                         <div className="col-sm-offset-2 col-sm-10">
                             <button className="btn btn-default" onClick={this.products}>Search</button>
+                            <br/>
                         </div>
+
                     </div>
                 </form>
-
             </div>
+            <br/>
             <div className="col-xs-2"/>
         </div>
             {products}
         </div></div>
-
     } }
 
 

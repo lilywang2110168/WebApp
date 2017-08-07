@@ -32,15 +32,6 @@ class Map extends React.Component {
     }
 
   render() {
-        let infoWindow;
-        if(this.state.lng){
-           infoWindow=<InfoWindow
-               position={this.state.data}>
-               <div><p>hello this is a message</p></div>
-           </InfoWindow>
-        }
-
-
 
       const GettingStartedGoogleMap = withGoogleMap(props => (
           <GoogleMap
@@ -59,7 +50,6 @@ class Map extends React.Component {
               ))}
 
               </MarkerClusterer>
-              {infoWindow}
           </GoogleMap>
               ));
 

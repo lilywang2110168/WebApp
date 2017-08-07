@@ -200,7 +200,7 @@ export class Customer extends Component {
                             {feature2}
                             {feature3}
                             <p>Weighted score: {product.scores.weighted}</p></div>
-                     <br></br></div></a>;
+                     <br/></div></a>;
             });
         }
         else{
@@ -240,6 +240,7 @@ export class Customer extends Component {
                         </div>
                             <div className="col-sm-offset-2 col-sm-10">
                                 <button className="btn btn-default" onClick={this.category}>Search</button>
+                                <br/>
                         </div>
                     </form>
                 </div>
