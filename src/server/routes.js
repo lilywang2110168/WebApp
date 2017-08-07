@@ -254,7 +254,7 @@ module.exports = (app) => {
 
     //sends back features of a category
     app.get('/v1/category/:category', function(req, res) {
-        let data=['screen resolution', "word processing", 'price',"customer service", 'light weight'];
+        let data=['size', 'screen resolution', 'number pad', 'desktop replacement', 'hard drive', 'touch screen', 'speed', 'port', 'wireless mouse', 'build quality', 'sound quality', 'desktop', 'machine', 'window', 'program', 'speaker', 'power cord', 'screen size', 'power button', 'backlit keyboard', 'customer service', 'word processing', 'video card', 'graphic', 'operating system', 'button', 'tech support', 'battery life', 'light weight', 'optical drive', 'mouse pad', 'software'];
         res.status(200).send(data);
     });
 

@@ -19,7 +19,6 @@ class Map extends React.Component {
         //console.log(ev);
         let markers=ev.getMarkers();
         let data={lat:ev.center_.lat(), lng:ev.center_.lng()};
-        this.setState({data:data});
         console.log(this.state.data);
         if(markers.length>10){
 
@@ -36,8 +35,7 @@ class Map extends React.Component {
         let infoWindow;
         if(this.state.lng){
            infoWindow=<InfoWindow
-               position={this.state.data}
-           >
+               position={this.state.data}>
                <div><p>hello this is a message</p></div>
            </InfoWindow>
         }
@@ -46,8 +44,8 @@ class Map extends React.Component {
 
       const GettingStartedGoogleMap = withGoogleMap(props => (
           <GoogleMap
-              defaultZoom={3}
-              defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
+              defaultZoom={4}
+              defaultCenter={{ lat: 39, lng: -98.5 }}
           >
               <MarkerClusterer
                   averageCenter
@@ -66,12 +64,10 @@ class Map extends React.Component {
               ));
 
     return <GettingStartedGoogleMap
-        defaultZoom={3}
-        defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
         containerElement={
-            <div style={{ height:`100%`}} />}
+            <div style={{ height:`80%`}} />}
         mapElement={
-            <div style={{ height: `100%`}} />}/>
+            <div style={{ height: `80%`}} />}/>
   }
 }
 

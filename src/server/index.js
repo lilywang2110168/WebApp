@@ -18,7 +18,7 @@ if (env !== 'test') app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, '../../public')));
 app.engine('pug', require('pug').__express);
 app.set('views', __dirname);
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Import our routes
 require('./routes')(app);

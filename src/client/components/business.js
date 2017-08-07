@@ -5,6 +5,16 @@
 import React, { Component }     from 'react';
 import {Link} from 'react-router';
 import {Header} from './header';
+import Autosuggest from 'react-autosuggest';
+
+
+const getSuggestionValue = suggestion => suggestion.name;
+
+
+// Use your imagination to render suggestions.
+
+const renderSuggestion=(suggestion)=>(
+    <span >{suggestion.name}</span>);
 
 
 /*************************************************************************/
@@ -14,107 +24,176 @@ export class Business extends Component {
     constructor(props) {
         super(props);
 
-        this.productID = this.productID.bind(this);
-        this.brandName = this.brandName.bind(this);
+        this.products = this.products.bind(this);
+        this.product = this.product.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onSuggestionsClearRequested= this.onSuggestionsClearRequested.bind(this);
+        this.getSuggestions= this.getSuggestions.bind(this);
+        this.productIDs={};
 
         this.state = {
             products:[],
-            analysis:""
+            analysis:"",
+            value: '',
+            suggestions: []
         };
     }
 
-    productID(ev) {
+
+    products(ev) {
+
         ev.preventDefault();
 
-        let productID= document.getElementById('productID').value;
-
-        $.ajax({
-            url: "/v1/product/"+productID,
-            method: "get",
+            let input=this.state.value;
+            if(input in this.productIDs){
+                this.product(this.productIDs[input]);
+            }else{
+            $.ajax({
+                url: "http://ec2-54-153-92-109.us-west-1.compute.amazonaws.com:57772/api/db/search/seller/"+input+"/20?CacheUserName=SuperUser&CachePassword=SYS",
+                method: "get",
+                dataType:'json',
             success: (data) => {
-               this.setState({products:[data]
-               });
-            },
-        });
+                    this.setState({
+                    products:data.products})}
+        });}
     }
 
-    brandName(ev) {
+    product(productID){
+        $.ajax({
+            url: "http://ec2-54-153-92-109.us-west-1.compute.amazonaws.com:57772/api/db/product/"+productID+"?CacheUserName=SuperUser&CachePassword=SYS",
+            method: "get",
+            dataType:'json',
+            success: (data) => {
+               data['id']=productID;
+                this.setState({
+                    products:[data]})
+                }
 
-        ev.preventDefault();
-            let brand=document.getElementById('brand').value;
+    });
+    }
+
+    onChange(event, {newValue}){
+        this.setState({
+            value: newValue
+        });
+    };
+
+
+    getSuggestions  ({value}){
+        const inputValue = value.trim().toLowerCase();
+        const inputLength = inputValue.length;
+        let suggestions=[];
+        //clearing the global variable suggestions
+        this.productIDs={};
+        if(inputLength>2){
 
             $.ajax({
-            url: "/v1/brand/"+brand,
-            method: "get",
-            success: (data) => {
-                this.setState({
-                    products:data
-                })
-            },
+                url: 'http://ec2-54-153-92-109.us-west-1.compute.amazonaws.com:57772/api/db/autocomplete/seller/'+inputValue +'?CacheUserName=SuperUser&CachePassword=SYS',
+                dataType:'json',
+                method: "get",
+                success: data => {
+                    suggestions=data.suggestions.map((item)=> {
+                        if(item.type==='product'){
+                            this.productIDs[item.product.name]=item.product.id;
+                            return {name:item.product.name};
+                        }else{
+                            return {name:item.brand};
+                        }
+                    });
+                    this.setState({suggestions})
+                },
+            });}
+    };
+
+    // Autosuggest will call this function every time you need to clear suggestions.
+    onSuggestionsClearRequested (){
+        this.setState({
+            suggestions: []
         });
-    }
+    };
 
 
 
     render() {
         //display the products
-         let  products = this.state.products.map((product, index)=> {
-             let productLink="/product/"+product.id;
-               return <div className="row" key={index}>
-                   <div className="col-xs-3"> </div>
-                   <div className="col-xs-8"><Link to={productLink} key={index}>
-                   <p>{product.name}</p>
-                       <img src={product.image}></img>
-                   <p>{product.description}</p>
 
-                   </Link><br></br></div></div>;
-           });
+        let products;
+        if(this.state.products.length===1){
+            let product=this.state.products[0];
+            let productLink="/product/"+product.id;
+
+            products=<div className="row"> <div className="col-xs-3"/>
+                <div className="col-xs-5"><Link to={productLink}>
+                    <p>{product.title}</p>
+                    <img className="imageSellerOne" src={product.imageUrl}/>
+                    <p>{product.description}</p>
+                </Link></div></div>
+
+        }
+
+        if(this.state.products.length>1){
+
+          products = this.state.products.map((product, index)=> {
+             let productLink="/product/"+product.id;
+             let title=product.title;
+
+               return <div  key={index}>
+                   <div className="col-xs-3"><Link to={productLink}>
+                   <p>{title}</p>
+                       <img className="imageSeller" src={product.imageUrl}/>
+                   </Link></div></div>;
+           });}
+
+         //try array partitioning sometime in the future
+
+
+
+        let value= this.state.value;
+        const inputProps = {
+            placeholder: 'Enter a brand or a product', value,
+            onChange: this.onChange
+        };
+
 
 
         return <div>
                 <Header/>
           <div className="container">
             <div className="row">
-                <div className="col-xs-4"></div>
+                <div className="col-xs-3"/>
                 <div className="col-md-6">
-                    <h2>Welcome Amazon Sellers</h2>
+                    <h2 className="welcome">Welcome Sellers</h2>
+                    <br/>
                 </div>
             </div>
         <div className="row">
-            <div className="col-xs-2"></div>
+            <div className="col-xs-2"/>
             <div className="col-xs-8">
                 <div className="center-block">
-                    <p id="errorMsg" className="bg-danger"></p>
                 </div>
                 <form className="form-horizontal">
                     <div className="form-group">
-                        <label className="col-sm-2 control-label" htmlFor="username">Product ID:</label>
-                        <div className="col-sm-10">
-                            <input className="form-control" id="productID" type="text" placeholder="1234324QW3"/>
+                        <label className="col-sm-3 control-label searchText" htmlFor="username">Product/Brand:</label>
+                        <div className="col-sm-7">
+                            <Autosuggest
+                                suggestions={this.state.suggestions}
+                                onSuggestionsFetchRequested={this.getSuggestions}
+                                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                                getSuggestionValue={getSuggestionValue}
+                                renderSuggestion={renderSuggestion}
+                                inputProps={inputProps}
+                            />
                         </div>
                     </div>
                     <div className="form-group">
                         <div className="col-sm-offset-2 col-sm-10">
-                            <button className="btn btn-default" onClick={this.productID}>Search</button>
+                            <button className="btn btn-default" onClick={this.products}>Search</button>
                         </div>
                     </div>
                 </form>
 
-                <form className="form-horizontal">
-                    <div className="form-group">
-                        <label className="col-sm-2 control-label" htmlFor="username">Brand Name:</label>
-                        <div className="col-sm-10">
-                            <input className="form-control" id="brand" type="text" placeholder="Apple"/>
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <div className="col-sm-offset-2 col-sm-10">
-                            <button className="btn btn-default" onClick={this.brandName}>Search</button>
-                        </div>
-                    </div>
-                </form>
             </div>
-            <div className="col-xs-2"></div>
+            <div className="col-xs-2"/>
         </div>
             {products}
         </div></div>

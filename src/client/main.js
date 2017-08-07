@@ -29,49 +29,13 @@ class MyApp extends Component {
     }
 }
 
-class User {
-    constructor() {
-        // See if user is in localStorage
-        const data = localStorage.getItem('user');
-        this.data = data ? JSON.parse(data) : {
-            username: "",
-            primary_email: ""
-        };
-    }
-
-    logIn(data) {
-        // Store locally
-        this.data = data;
-        // Store into localStorage
-        localStorage.setItem('user', JSON.stringify(data));
-        // Go to user profile
-        browserHistory.push(`/profile/${data.username}`);
-    }
-
-    logOut() {
-        // Remove user info
-        this.data = {
-            username: "",
-            primary_email: ""
-        };
-        // Wipe localStorage
-        localStorage.removeItem('user');
-        // Go to login page
-        browserHistory.push('/login');
-    }
-
-    getUser() {
-        return this.data;
-    }
-}
-let user = new User();
 
 render(
     <Router history={browserHistory}>
-        <Route path="/" component={MyApp} user={user}>
+        <Route path="/" component={MyApp}>
             <IndexRoute component={Landing}/>
-            <Route path="/buyer" component={Customer} user={user}/>
-            <Route path="/seller" component={Business} user={user}/>
+            <Route path="/buyer" component={Customer}/>
+            <Route path="/seller" component={Business} />
             <Route path="/product/:id" component={Product}/>
             <Route path="/header"/>
         </Route>

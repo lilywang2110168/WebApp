@@ -36,6 +36,6 @@ export const Landing = () => (
                     <Link to="/buyer">  <button className="btn btn-default landingButton">Buyer</button></Link>
                 </div>
             </div>
-
-            </div></div></div>
+            </div></div>
+           </div>
 );

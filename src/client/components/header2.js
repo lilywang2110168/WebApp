@@ -23,11 +23,11 @@ export class Header2 extends Component {
             </div>
             <ul className="nav navbar-nav">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Buyer</a></li>
-                <li><a href="#">seller</a></li>
+                <li><Link to="/buyer"><a href="#">Buyer</a></Link></li>
+                <li><Link to="/seller"><a href="#">Seller</a></Link></li>
             </ul>
             <form className="form-inline my-2 my-lg-0">
-                <input className="form-control mr-sm-2" type="text" placeholder="Search"></input>
+                <input className="form-control mr-sm-2" type="text" placeholder="Search"/>
                 <button className="btn btn-default" type="submit">Search</button>
             </form></nav></div>
     }

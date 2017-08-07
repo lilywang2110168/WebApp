@@ -14,67 +14,132 @@ export class Product extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data:""
+            data:"",
+            demographics:false,
+            features:true
         };
 
+        this.features = this.features.bind(this);
+        this.demographics= this.demographics.bind(this);
     }
+
+    features(){
+        this.setState({features:true,  demographics:false});}
+
+    demographics(){
+        this.setState({features:false,  demographics:true});
+    }
+
 
     componentDidMount(){
         $.ajax({
-            url: `/v1/analytics/${this.props.params.id}`,
+            url: `http://ec2-54-153-92-109.us-west-1.compute.amazonaws.com:57772/api/db/product/${this.props.params.id}?CacheUserName=SuperUser&CachePassword=SYS`,
+            dataType:'json',
             method: "get",
             success: data => {
                 console.log(data);
-                this.setState({data: data});
-            },
+                this.setState({data: data});}
         });
     }
 
     render() {
-        let analytics;
+
+        let featuresAnalysis;
+        let demographics;
+
 
         if(this.state.data){
 
-            let  products = this.state.data.features.map((product, index)=> {
-                return <tr key={index}>
-                    <th>{product}</th>
-                    <th>{this.state.data.featureScores[index]}</th>
-                    <th>{this.state.data.featureSummaries[index]}</th>
-                </tr>;
+
+            if(this.state.data.features){
+                this.state.data.features.sort(function(a, b) {
+                    return parseFloat(b.popularityScore) - parseFloat(a.popularityScore);
+                });
+
+                let  featuresTable = this.state.data.features.map((feature, index)=> {
+                    return <tr key={index}>
+                        <th>{feature.featureName}</th>
+                        <th>{feature.sentimentScore}</th>
+                        <th>{feature.popularityScore}</th>
+                            <th>{feature.summary}</th>
+                    </tr>;
             });
 
+                featuresTable=<table className="table table-striped"><thead>
+                    <tr>
+                    <th>Feature</th>
+                    <th>Sentiment</th>
+                    <th>Popularity</th>
+                    <th>Summary</th>
+                </tr>
+                </thead>
+                <tbody>
+                {featuresTable}</tbody></table>;
+
+                let comparisonTable;
 
 
-            analytics=
-                <div className="row">
-                <div className="col-xs-4"></div>
-                <div className="col-md-6">
-                 <h2>{this.state.data.name}</h2>
-                    <img src={this.state.data.image}></img>
-                    <h3>Description</h3>
-                    <p>{this.state.data.description}</p>
+           featuresAnalysis=<div className="row">
+               <div className="col-xs-1"/>
+                <div className="col-xs-3">
+                    <h2>{this.state.data.title}</h2>
+                    <img src={this.state.data.imageUrl}/>
+                    {comparisonTable}
+                </div>
+                <div className="col-md-7">
                     <h3>Features</h3>
-                    <table id="gameTable" className="col-xs-12 table">
-                        <thead>
-                        <tr>
-                            <th>Feature</th>
-                            <th>Score</th>
-                            <th>Summary</th>
-                        </tr>
-                        </thead>
+                    {featuresTable}</div></div>;}
+           else{
 
-                        <tbody>
-                    {products}</tbody></table>
+                featuresAnalysis=null
+            }
 
-                    <h3>Demographics</h3>
-                   <Map markers={this.state.data.coordinates}/>
-                    <br></br>
-                    <div className="panel panel-default">
-                        <div className="panel-heading">gender comparisons</div>
-                        <div className="panel-body">female reviewers reviewed screen resolution higher</div>
-                    </div>
-                    <div className="row">
-                        <Chart/></div>
-                </div></div>;
+           if(this.state.demographics){
+
+               let geographic= <div>
+                   <h3>Demographics</h3>
+                   <Map markers={this.state.data.coordinates}/></div>;
+
+               let gender=<div>
+                  <div className="panel panel-default">
+                <div className="panel-heading">gender comparisons</div>
+               <div className="panel-body">female reviewers reviewed screen resolution higher</div>
+                  </div>
+                   <Chart/></div>;
+
+
+
+
+               demographics=<div className="row">
+                   <div className="col-xs-3">
+                       <br/><br/>
+                       <div className="panel panel-default">
+                           <div className="panel-heading">Most pupular Feature</div>
+                           <div className="panel-body">screen resolution</div>
+                       </div>
+
+                   </div>
+                   <div className="col-md-7">
+                       {geographic}</div>
+                   <div className="row">
+                       <div className="col-xs-3"/>
+                       <div className="col-md-7">{gender}</div>
+                   </div></div>;
+            }
+
+           else{
+               demographics=null;
+           }
         }
-        return <div><Header2/><div>{analytics}</div></div>}}
+
+
+        return <div><Header2/>
+            <ul className="nav nav-tabs">
+                <li className="active"><a href="#"  onClick={this.features}>Features</a></li>
+                <li><a href="#" onClick={this.demographics}>Demographics</a></li>
+            </ul>
+                {featuresAnalysis}
+                {demographics}
+        </div>
+    }
+}

@@ -68,3 +68,58 @@ html *
 .navbar-brand{
     font-size:25px
 }
+
+.react-autosuggest__suggestions-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.react-autosuggest__suggestions-container--open {
+    display: block;
+    border: 1px solid #aaa;
+    width: 360px;
+    background-color: #fff;
+    font-weight: 300;
+    font-size: 18px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 2;
+}
+
+.react-autosuggest__suggestion {
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.react-autosuggest__suggestion--highlighted {
+    background-color: #ddd;
+}
+
+.react-autosuggest__input {
+    width: 360px;
+    height: 30px;
+    padding: 10px 20px;
+    font-weight: 300;
+    font-size: 18px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+.imageSeller{
+    height:120px;
+}
+
+.imageBuyer{
+    height:200px;
+}
+
+.welcome{
+    font-size: 50px;
+}
+
+.searchText{
+    font-size: 18px;
+}

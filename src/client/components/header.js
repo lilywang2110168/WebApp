@@ -27,8 +27,8 @@ export class Header extends Component {
                 </div>
                 <ul className="nav navbar-nav">
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Buyer</a></li>
-                    <li><a href="#">seller</a></li>
+                    <li><a href="#"><Link to="/buyer"> Buyer</Link></a></li>
+                    <li><a href="#"><Link to="/seller"> Seller</Link></a></li>
                 </ul></nav></div>
     }
 }
