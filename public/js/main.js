@@ -601,7 +601,7 @@ module.exports = isObject;
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(54);
+var isObject = __webpack_require__(55);
 module.exports = function(it){
   if(!isObject(it))throw TypeError(it + ' is not an object!');
   return it;
@@ -624,7 +624,7 @@ module.exports = function(exec){
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP         = __webpack_require__(29)
-  , createDesc = __webpack_require__(57);
+  , createDesc = __webpack_require__(58);
 module.exports = __webpack_require__(34) ? function(object, key, value){
   return dP.f(object, key, createDesc(1, value));
 } : function(object, key, value){
@@ -702,7 +702,8 @@ module.exports = isObjectLike;
 /* 51 */,
 /* 52 */,
 /* 53 */,
-/* 54 */
+/* 54 */,
+/* 55 */
 /***/ (function(module, exports) {
 
 module.exports = function(it){
@@ -710,13 +711,13 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = {};
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
@@ -728,7 +729,7 @@ module.exports = Object.keys || function keys(O){
 };
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = function(bitmap, value){
@@ -741,7 +742,7 @@ module.exports = function(bitmap, value){
 };
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var root = __webpack_require__(16);
@@ -753,10 +754,10 @@ module.exports = Symbol;
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(58),
+var Symbol = __webpack_require__(59),
     getRawTag = __webpack_require__(396),
     objectToString = __webpack_require__(426);
 
@@ -787,7 +788,6 @@ module.exports = baseGetTag;
 
 
 /***/ }),
-/* 60 */,
 /* 61 */,
 /* 62 */,
 /* 63 */,
@@ -1196,7 +1196,7 @@ module.exports = isArrayLike;
 /* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(59),
+var baseGetTag = __webpack_require__(60),
     isObjectLike = __webpack_require__(47);
 
 /** `Object#toString` result references. */
@@ -2808,7 +2808,7 @@ module.exports = function(it){
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(54);
+var isObject = __webpack_require__(55);
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
 module.exports = function(it, S){
@@ -3232,7 +3232,7 @@ module.exports = isArguments;
 /* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(59),
+var baseGetTag = __webpack_require__(60),
     isObject = __webpack_require__(38);
 
 /** `Object#toString` result references. */
@@ -3438,7 +3438,7 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 /* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(54)
+var isObject = __webpack_require__(55)
   , document = __webpack_require__(28).document
   // in old IE typeof document.createElement is 'object'
   , is = isObject(document) && isObject(document.createElement);
@@ -3475,7 +3475,7 @@ var LIBRARY        = __webpack_require__(98)
   , redefine       = __webpack_require__(161)
   , hide           = __webpack_require__(44)
   , has            = __webpack_require__(35)
-  , Iterators      = __webpack_require__(55)
+  , Iterators      = __webpack_require__(56)
   , $iterCreate    = __webpack_require__(293)
   , setToStringTag = __webpack_require__(101)
   , getPrototypeOf = __webpack_require__(159)
@@ -3545,7 +3545,7 @@ module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED
 /***/ (function(module, exports, __webpack_require__) {
 
 var pIE            = __webpack_require__(66)
-  , createDesc     = __webpack_require__(57)
+  , createDesc     = __webpack_require__(58)
   , toIObject      = __webpack_require__(36)
   , toPrimitive    = __webpack_require__(105)
   , has            = __webpack_require__(35)
@@ -5890,11 +5890,13 @@ var Business = exports.Business = function (_Component) {
                                             'button',
                                             { className: 'btn btn-default', onClick: this.products },
                                             'Search'
-                                        )
+                                        ),
+                                        _react2.default.createElement('br', null)
                                     )
                                 )
                             )
                         ),
+                        _react2.default.createElement('br', null),
                         _react2.default.createElement('div', { className: 'col-xs-2' })
                     ),
                     products
@@ -5905,7 +5907,7 @@ var Business = exports.Business = function (_Component) {
 
     return Business;
 }(_react.Component);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(65)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54)))
 
 /***/ }),
 /* 254 */
@@ -6186,7 +6188,7 @@ var Customer = exports.Customer = function (_Component) {
                             null,
                             _this5.selectedFeatures[0],
                             ': ',
-                            product.scores.feature1
+                            Math.round(product.scores.feature1 * 10) / 10
                         );
                     }
                     if (_this5.selectedFeatures[1]) {
@@ -6195,7 +6197,7 @@ var Customer = exports.Customer = function (_Component) {
                             null,
                             _this5.selectedFeatures[1],
                             ': ',
-                            product.scores.feature2
+                            Math.round(product.scores.feature2 * 10) / 10
                         );
                     }
                     if (_this5.selectedFeatures[2]) {
@@ -6204,7 +6206,7 @@ var Customer = exports.Customer = function (_Component) {
                             null,
                             _this5.selectedFeatures[2],
                             ': ',
-                            product.scores.feature3
+                            Math.round(product.scores.feature3 * 10) / 10
                         );
                     }
                     return _react2.default.createElement(
@@ -6243,7 +6245,7 @@ var Customer = exports.Customer = function (_Component) {
                                     'p',
                                     null,
                                     'Weighted score: ',
-                                    product.scores.weighted
+                                    Math.round(product.scores.weighted * 10) / 10
                                 )
                             ),
                             _react2.default.createElement('br', null)
@@ -6328,7 +6330,8 @@ var Customer = exports.Customer = function (_Component) {
                                         'button',
                                         { className: 'btn btn-default', onClick: this.category },
                                         'Search'
-                                    )
+                                    ),
+                                    _react2.default.createElement('br', null)
                                 )
                             )
                         ),
@@ -6338,6 +6341,7 @@ var Customer = exports.Customer = function (_Component) {
                             ' '
                         )
                     ),
+                    _react2.default.createElement('br', null),
                     features,
                     products
                 )
@@ -6347,7 +6351,7 @@ var Customer = exports.Customer = function (_Component) {
 
     return Customer;
 }(_react.Component);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(65)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54)))
 
 /***/ }),
 /* 255 */
@@ -6500,11 +6504,17 @@ var Product = exports.Product = function (_Component) {
         _this.state = {
             data: "",
             demographics: false,
-            features: true
+            features: true,
+            category: '',
+            markers: [],
+            mapFeature: ""
         };
 
         _this.features = _this.features.bind(_this);
         _this.demographics = _this.demographics.bind(_this);
+        _this.getDemographics = _this.getDemographics.bind(_this);
+        _this.myCallback = _this.myCallback.bind(_this);
+
         return _this;
     }
 
@@ -6519,6 +6529,12 @@ var Product = exports.Product = function (_Component) {
             this.setState({ features: false, demographics: true });
         }
     }, {
+        key: 'myCallback',
+        value: function myCallback(mostPopularFeature) {
+            console.log(mostPopularFeature);
+            this.setState({ mapFeature: mostPopularFeature });
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _this2 = this;
@@ -6530,8 +6546,34 @@ var Product = exports.Product = function (_Component) {
                 success: function success(data) {
                     console.log(data);
                     _this2.setState({ data: data });
+                    _this2.getDemographics();
                 }
             });
+        }
+
+        //setting it to be 100 at first
+
+    }, {
+        key: 'getDemographics',
+        value: function getDemographics() {
+            var _this3 = this;
+
+            for (var i = 0, len = this.state.data.categories.length; i < len; i++) {
+                var category = this.state.data.categories[i];
+                if (category.features.length > 0) {
+                    $.ajax({
+                        url: "http://ec2-54-153-92-109.us-west-1.compute.amazonaws.com:57772/api/db/categoryreviewers/" + category.categoryName + "?CacheUserName=SuperUser&CachePassword=SYS",
+                        dataType: 'json',
+                        method: "get",
+                        success: function success(data) {
+                            var markers = data.reviewers.slice(0, 100).map(function (reviewer, index) {
+                                return { index: index, location: reviewer.location, reviewerID: reviewer.id };
+                            });
+
+                            _this3.setState({ markers: markers });
+                        } });
+                }
+            }
         }
     }, {
         key: 'render',
@@ -6541,37 +6583,40 @@ var Product = exports.Product = function (_Component) {
             var demographics = void 0;
 
             if (this.state.data) {
+                //the api call has returned some information
 
-                if (this.state.data.features) {
+                if (this.state.features) {
                     this.state.data.features.sort(function (a, b) {
                         return parseFloat(b.popularityScore) - parseFloat(a.popularityScore);
                     });
 
                     var featuresTable = this.state.data.features.map(function (feature, index) {
-                        return _react2.default.createElement(
-                            'tr',
-                            { key: index },
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                feature.featureName
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                feature.sentimentScore
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                feature.popularityScore
-                            ),
-                            _react2.default.createElement(
-                                'th',
-                                null,
-                                feature.summary
-                            )
-                        );
+                        if (feature.featureName === "machine") {} else {
+                            return _react2.default.createElement(
+                                'tr',
+                                { key: index },
+                                _react2.default.createElement(
+                                    'th',
+                                    null,
+                                    feature.featureName
+                                ),
+                                _react2.default.createElement(
+                                    'th',
+                                    null,
+                                    Math.round(feature.sentimentScore * 10) / 10
+                                ),
+                                _react2.default.createElement(
+                                    'th',
+                                    null,
+                                    Math.round(feature.popularityScore * 10) / 10
+                                ),
+                                _react2.default.createElement(
+                                    'th',
+                                    null,
+                                    feature.summary
+                                )
+                            );
+                        }
                     });
 
                     featuresTable = _react2.default.createElement(
@@ -6614,34 +6659,117 @@ var Product = exports.Product = function (_Component) {
 
                     var comparisonTable = void 0;
 
+                    for (var i = 0, len = this.state.data.categories.length; i < len; i++) {
+                        var category = this.state.data.categories[i];
+                        if (category.features.length > 0) {
+
+                            category.features.sort(function (a, b) {
+                                return parseFloat(b.popularityScore) - parseFloat(a.popularityScore);
+                            });
+
+                            comparisonTable = category.features.map(function (feature, index) {
+                                var comparision = void 0;
+                                var percentage = feature.numProductsLowerSentiment / (feature.numProductsHigherSentiment + feature.numProductsLowerSentiment);
+                                percentage = Math.round(percentage * 1000) / 10;
+                                comparision = _react2.default.createElement(
+                                    'th',
+                                    null,
+                                    'defeated ',
+                                    percentage,
+                                    '% '
+                                );
+
+                                return _react2.default.createElement(
+                                    'tr',
+                                    { key: index },
+                                    _react2.default.createElement(
+                                        'th',
+                                        null,
+                                        feature.featureName
+                                    ),
+                                    _react2.default.createElement(
+                                        'th',
+                                        null,
+                                        Math.round(feature.popularityScore * 10) / 10
+                                    ),
+                                    _react2.default.createElement(
+                                        'th',
+                                        null,
+                                        comparision
+                                    )
+                                );
+                            });
+
+                            comparisonTable = _react2.default.createElement(
+                                'table',
+                                { className: 'table table-striped' },
+                                _react2.default.createElement(
+                                    'thead',
+                                    null,
+                                    _react2.default.createElement(
+                                        'tr',
+                                        null,
+                                        _react2.default.createElement(
+                                            'th',
+                                            null,
+                                            'Feature'
+                                        ),
+                                        _react2.default.createElement(
+                                            'th',
+                                            null,
+                                            'Popularity'
+                                        ),
+                                        _react2.default.createElement(
+                                            'th',
+                                            null,
+                                            'Comparision'
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'tbody',
+                                    null,
+                                    comparisonTable
+                                )
+                            );
+                        }
+                    }
+
                     featuresAnalysis = _react2.default.createElement(
                         'div',
                         { className: 'row' },
-                        _react2.default.createElement('div', { className: 'col-xs-1' }),
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-xs-3' },
+                            { className: 'col-xs-5' },
                             _react2.default.createElement(
                                 'h2',
                                 null,
                                 this.state.data.title
                             ),
                             _react2.default.createElement('img', { src: this.state.data.imageUrl }),
+                            _react2.default.createElement(
+                                'h3',
+                                null,
+                                'Comparison with products within the category '
+                            ),
+                            _react2.default.createElement('br', null),
                             comparisonTable
                         ),
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-md-7' },
+                            { className: 'col-xs-7' },
                             _react2.default.createElement(
                                 'h3',
                                 null,
-                                'Features'
+                                'Feature analysis of this product(based on ',
+                                this.state.data.numReviews,
+                                ' reviews)'
                             ),
+                            _react2.default.createElement('br', null),
                             featuresTable
                         )
                     );
                 } else {
-
                     featuresAnalysis = null;
                 }
 
@@ -6655,26 +6783,12 @@ var Product = exports.Product = function (_Component) {
                             null,
                             'Demographics'
                         ),
-                        _react2.default.createElement(_map2.default, { markers: this.state.data.coordinates })
+                        _react2.default.createElement(_map2.default, { markers: this.state.markers, callback: this.myCallback })
                     );
 
                     var gender = _react2.default.createElement(
                         'div',
                         null,
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'panel panel-default' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'panel-heading' },
-                                'gender comparisons'
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'panel-body' },
-                                'female reviewers reviewed screen resolution higher'
-                            )
-                        ),
                         _react2.default.createElement(_Chart2.default, null)
                     );
 
@@ -6692,12 +6806,13 @@ var Product = exports.Product = function (_Component) {
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'panel-heading' },
-                                    'Most pupular Feature'
+                                    'Most liked Feature'
                                 ),
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'panel-body' },
-                                    'screen resolution'
+                                    ' ',
+                                    this.state.mapFeature
                                 )
                             )
                         ),
@@ -6756,7 +6871,7 @@ var Product = exports.Product = function (_Component) {
 
     return Product;
 }(_react.Component);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(65)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54)))
 
 /***/ }),
 /* 257 */
@@ -6812,10 +6927,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Chart = function (_React$Component) {
     _inherits(Chart, _React$Component);
 
-    function Chart() {
+    function Chart(props) {
         _classCallCheck(this, Chart);
 
-        return _possibleConstructorReturn(this, (Chart.__proto__ || Object.getPrototypeOf(Chart)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (Chart.__proto__ || Object.getPrototypeOf(Chart)).call(this, props));
     }
 
     _createClass(Chart, [{
@@ -6975,7 +7090,7 @@ var Header2 = exports.Header2 = function (_Component) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function($) {
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -7009,81 +7124,84 @@ var Map = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this, props));
 
-        _this.state = {
-            data: ''
-        };
-
+        _this.reviewers = {};
         _this.onMouseOver = _this.onMouseOver.bind(_this);
+        _this.markerMouse = _this.markerMouse.bind(_this);
 
         return _this;
     }
 
     _createClass(Map, [{
+        key: 'shouldComponentUpdate',
+        value: function shouldComponentUpdate(nextProps, nextState) {
+            return false;
+        }
+    }, {
+        key: 'markerMouse',
+        value: function markerMouse(ev) {
+            this.props.callback("");
+        }
+    }, {
         key: 'onMouseOver',
         value: function onMouseOver(ev) {
+            var _this2 = this;
+
             //console.log(ev);
             var markers = ev.getMarkers();
-            var data = { lat: ev.center_.lat(), lng: ev.center_.lng() };
-            console.log(this.state.data);
-            if (markers.length > 10) {
-
+            if (markers.length < 200) {
+                var ids = [];
                 for (var i = 0; i < markers.length; i++) {
-                    var lat = markers[i].position.lat();
-                    var lng = markers[i].position.lng();
-                    console.log(markers[i].getZIndex());
+                    ids[i] = this.reviewers[markers[i].getZIndex()];
                 }
+
+                $.ajax({
+                    url: "http://ec2-54-153-92-109.us-west-1.compute.amazonaws.com:57772/api/db/geo/laptops/" + ids.join(",") + "?CacheUserName=SuperUser&CachePassword=SYS",
+                    dataType: 'json',
+                    method: "get",
+                    success: function success(data) {
+                        _this2.props.callback(data.mostLikedFeature);
+                    } });
+            } else {
+                this.props.callback("");
             }
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
+            var _this3 = this;
 
-            var infoWindow = void 0;
-            if (this.state.lng) {
-                infoWindow = _react2.default.createElement(
-                    InfoWindow,
-                    {
-                        position: this.state.data },
-                    _react2.default.createElement(
-                        'div',
-                        null,
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            'hello this is a message'
-                        )
-                    )
-                );
-            }
+            var markers = this.props.markers.map(function (marker) {
+                _this3.reviewers[marker.index] = marker.reviewerID;
+                return _react2.default.createElement(_reactGoogleMaps.Marker, {
+                    position: { lat: marker.location.lat, lng: marker.location.lng },
+                    key: marker.index, zIndex: marker.index, onMouseOver: _this3.markerMouse
+                });
+            });
 
             var GettingStartedGoogleMap = (0, _reactGoogleMaps.withGoogleMap)(function (props) {
                 return _react2.default.createElement(
                     _reactGoogleMaps.GoogleMap,
                     {
                         defaultZoom: 4,
-                        defaultCenter: { lat: 39, lng: -98.5 }
-                    },
+                        defaultCenter: { lat: 39, lng: -98.5 } },
                     _react2.default.createElement(
                         _MarkerClusterer2.default,
                         {
                             averageCenter: true,
                             enableRetinaIcons: true,
-                            gridSize: 60, onMouseOver: _this2.onMouseOver },
-                        _this2.props.markers.map(function (marker, index) {
-                            return _react2.default.createElement(_reactGoogleMaps.Marker, {
-                                position: { lat: marker.lat, lng: marker.lng },
-                                key: index, zIndex: 12323
-                            });
-                        })
-                    ),
-                    infoWindow
+                            gridSize: 60, onMouseOver: _this3.onMouseOver },
+                        markers
+                    )
                 );
             });
 
-            return _react2.default.createElement(GettingStartedGoogleMap, {
-                containerElement: _react2.default.createElement('div', { style: { height: '80%' } }),
-                mapElement: _react2.default.createElement('div', { style: { height: '80%' } }) });
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(GettingStartedGoogleMap, {
+                    containerElement: _react2.default.createElement('div', { style: { height: '80%' } }),
+                    mapElement: _react2.default.createElement('div', { style: { height: '80%' } }) })
+            );
         }
     }]);
 
@@ -7091,6 +7209,7 @@ var Map = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Map;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54)))
 
 /***/ }),
 /* 261 */
@@ -7513,7 +7632,7 @@ module.exports = function(it){
 "use strict";
 
 var $defineProperty = __webpack_require__(29)
-  , createDesc      = __webpack_require__(57);
+  , createDesc      = __webpack_require__(58);
 
 module.exports = function(object, index, value){
   if(index in object)$defineProperty.f(object, index, createDesc(0, value));
@@ -7525,7 +7644,7 @@ module.exports = function(object, index, value){
 /***/ (function(module, exports, __webpack_require__) {
 
 // all enumerable object keys, includes symbols
-var getKeys = __webpack_require__(56)
+var getKeys = __webpack_require__(57)
   , gOPS    = __webpack_require__(100)
   , pIE     = __webpack_require__(66);
 module.exports = function(it){
@@ -7551,7 +7670,7 @@ module.exports = __webpack_require__(28).document && document.documentElement;
 /***/ (function(module, exports, __webpack_require__) {
 
 // check on default Array iterator
-var Iterators  = __webpack_require__(55)
+var Iterators  = __webpack_require__(56)
   , ITERATOR   = __webpack_require__(22)('iterator')
   , ArrayProto = Array.prototype;
 
@@ -7593,7 +7712,7 @@ module.exports = function(iterator, fn, value, entries){
 "use strict";
 
 var create         = __webpack_require__(99)
-  , descriptor     = __webpack_require__(57)
+  , descriptor     = __webpack_require__(58)
   , setToStringTag = __webpack_require__(101)
   , IteratorPrototype = {};
 
@@ -7643,7 +7762,7 @@ module.exports = function(done, value){
 /* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getKeys   = __webpack_require__(56)
+var getKeys   = __webpack_require__(57)
   , toIObject = __webpack_require__(36);
 module.exports = function(object, el){
   var O      = toIObject(object)
@@ -7659,7 +7778,7 @@ module.exports = function(object, el){
 /***/ (function(module, exports, __webpack_require__) {
 
 var META     = __webpack_require__(68)('meta')
-  , isObject = __webpack_require__(54)
+  , isObject = __webpack_require__(55)
   , has      = __webpack_require__(35)
   , setDesc  = __webpack_require__(29).f
   , id       = 0;
@@ -7719,7 +7838,7 @@ var meta = module.exports = {
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
-var getKeys  = __webpack_require__(56)
+var getKeys  = __webpack_require__(57)
   , gOPS     = __webpack_require__(100)
   , pIE      = __webpack_require__(66)
   , toObject = __webpack_require__(67)
@@ -7757,7 +7876,7 @@ module.exports = !$assign || __webpack_require__(43)(function(){
 
 var dP       = __webpack_require__(29)
   , anObject = __webpack_require__(42)
-  , getKeys  = __webpack_require__(56);
+  , getKeys  = __webpack_require__(57);
 
 module.exports = __webpack_require__(34) ? Object.defineProperties : function defineProperties(O, Properties){
   anObject(O);
@@ -7815,7 +7934,7 @@ module.exports = function(KEY, exec){
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
-var isObject = __webpack_require__(54)
+var isObject = __webpack_require__(55)
   , anObject = __webpack_require__(42);
 var check = function(O, proto){
   anObject(O);
@@ -7879,7 +7998,7 @@ module.exports = function(index, length){
 
 var classof   = __webpack_require__(286)
   , ITERATOR  = __webpack_require__(22)('iterator')
-  , Iterators = __webpack_require__(55);
+  , Iterators = __webpack_require__(56);
 module.exports = __webpack_require__(21).getIteratorMethod = function(it){
   if(it != undefined)return it[ITERATOR]
     || it['@@iterator']
@@ -7938,7 +8057,7 @@ $export($export.S + $export.F * !__webpack_require__(294)(function(iter){ Array.
 
 var addToUnscopables = __webpack_require__(284)
   , step             = __webpack_require__(295)
-  , Iterators        = __webpack_require__(55)
+  , Iterators        = __webpack_require__(56)
   , toIObject        = __webpack_require__(36);
 
 // 22.1.3.4 Array.prototype.entries()
@@ -8049,12 +8168,12 @@ var global         = __webpack_require__(28)
   , anObject       = __webpack_require__(42)
   , toIObject      = __webpack_require__(36)
   , toPrimitive    = __webpack_require__(105)
-  , createDesc     = __webpack_require__(57)
+  , createDesc     = __webpack_require__(58)
   , _create        = __webpack_require__(99)
   , gOPNExt        = __webpack_require__(300)
   , $GOPD          = __webpack_require__(157)
   , $DP            = __webpack_require__(29)
-  , $keys          = __webpack_require__(56)
+  , $keys          = __webpack_require__(57)
   , gOPD           = $GOPD.f
   , dP             = $DP.f
   , gOPN           = gOPNExt.f
@@ -8283,7 +8402,7 @@ __webpack_require__(106)('observable');
 __webpack_require__(307);
 var global        = __webpack_require__(28)
   , hide          = __webpack_require__(44)
-  , Iterators     = __webpack_require__(55)
+  , Iterators     = __webpack_require__(56)
   , TO_STRING_TAG = __webpack_require__(22)('toStringTag');
 
 for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList', 'CSSRuleList'], i = 0; i < 5; i++){
@@ -9014,7 +9133,7 @@ module.exports = baseIndexOf;
 /* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(59),
+var baseGetTag = __webpack_require__(60),
     isObjectLike = __webpack_require__(47);
 
 /** `Object#toString` result references. */
@@ -9266,7 +9385,7 @@ module.exports = baseIsNative;
 /* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(59),
+var baseGetTag = __webpack_require__(60),
     isLength = __webpack_require__(128),
     isObjectLike = __webpack_require__(47);
 
@@ -9560,7 +9679,7 @@ module.exports = baseTimes;
 /* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(58),
+var Symbol = __webpack_require__(59),
     arrayMap = __webpack_require__(352),
     isArray = __webpack_require__(17),
     isSymbol = __webpack_require__(83);
@@ -10078,7 +10197,7 @@ module.exports = createPartial;
 /* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(58),
+var Symbol = __webpack_require__(59),
     Uint8Array = __webpack_require__(348),
     eq = __webpack_require__(81),
     equalArrays = __webpack_require__(192),
@@ -10365,7 +10484,7 @@ module.exports = getMatchData;
 /* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(58);
+var Symbol = __webpack_require__(59);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -10458,7 +10577,7 @@ var DataView = __webpack_require__(343),
     Promise = __webpack_require__(345),
     Set = __webpack_require__(346),
     WeakMap = __webpack_require__(174),
-    baseGetTag = __webpack_require__(59),
+    baseGetTag = __webpack_require__(60),
     toSource = __webpack_require__(205);
 
 /** `Object#toString` result references. */
@@ -10726,7 +10845,7 @@ module.exports = insertWrapDetails;
 /* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(58),
+var Symbol = __webpack_require__(59),
     isArguments = __webpack_require__(126),
     isArray = __webpack_require__(17);
 

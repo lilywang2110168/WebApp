@@ -178,13 +178,13 @@ export class Customer extends Component {
                 let productLink="https://www.amazon.com/dp/"+product.id;
                 let feature1,feature2, feature3;
                 if(this.selectedFeatures[0]){
-                    feature1=<p>{this.selectedFeatures[0]}: {product.scores.feature1}</p>
+                    feature1=<p>{this.selectedFeatures[0]}: {Math.round(product.scores.feature1*10)/10}</p>
                 }
                 if(this.selectedFeatures[1]){
-                    feature2=<p>{this.selectedFeatures[1]}: {product.scores.feature2}</p>
+                    feature2=<p>{this.selectedFeatures[1]}: {Math.round(product.scores.feature2*10)/10}</p>
                 }
                 if(this.selectedFeatures[2]){
-                    feature3=<p>{this.selectedFeatures[2]}: {product.scores.feature3}</p>
+                    feature3=<p>{this.selectedFeatures[2]}: {Math.round(product.scores.feature3*10)/10}</p>
                 }
                 return <a href={productLink} key={index}>
                     <div className="row" key={index}>
@@ -199,7 +199,7 @@ export class Customer extends Component {
                             {feature1}
                             {feature2}
                             {feature3}
-                            <p>Weighted score: {product.scores.weighted}</p></div>
+                            <p>Weighted score: {Math.round(product.scores.weighted*10)/10}</p></div>
                      <br/></div></a>;
             });
         }
@@ -246,6 +246,7 @@ export class Customer extends Component {
                 </div>
                     <div className="col-xs-2"> </div>
             </div>
+            <br/>
             {features}
             {products}
             </div></div>

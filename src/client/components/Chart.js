@@ -1,6 +1,9 @@
 import React from 'react';
 
 class Chart extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
     componentDidMount() {
         let  chart = new CanvasJS.Chart("chartContainer", {
@@ -23,12 +26,12 @@ class Chart extends React.Component {
                 }
             ]
         });
-    chart.render();
-  }
+        chart.render();
+    }
 
-  render() {
-    return<div id="chartContainer"> </div>;
-  }
+    render() {
+        return<div id="chartContainer"> </div>;
+    }
 
 }
 
