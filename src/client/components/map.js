@@ -8,7 +8,7 @@ class Map extends React.Component {
         super(props);
 
         this.state = {
-          data:''
+            data:''
         };
 
         this.onMouseOver = this.onMouseOver.bind(this);
@@ -19,60 +19,33 @@ class Map extends React.Component {
         //console.log(ev);
         let markers=ev.getMarkers();
         let data={lat:ev.center_.lat(), lng:ev.center_.lng()};
-        this.setState({data:data});
         console.log(this.state.data);
         if(markers.length>10){
 
-        for(let i=0; i<markers.length; i++){
-            let lat=markers[i].position.lat();
-            let lng=markers[i].position.lng();
-            console.log(markers[i].getZIndex());
+            for(let i=0; i<markers.length; i++){
+                let lat=markers[i].position.lat();
+                let lng=markers[i].position.lng();
+                console.log(markers[i].getZIndex());
 
+            }
         }
     }
+
+    render() {
+
+        const GettingStartedGoogleMap = withGoogleMap(props => (
+            <GoogleMap
+                defaultZoom={4}
+                defaultCenter={{ lat: 39, lng: -98.5 }}>
+            </GoogleMap>
+        ));
+
+        return <GettingStartedGoogleMap
+            containerElement={
+                <div style={{ height:`80%`}} />}
+            mapElement={
+                <div style={{ height: `80%`}} />}/>
     }
-
-  render() {
-        let infoWindow;
-        if(this.state.lng){
-           infoWindow=<InfoWindow
-               position={this.state.data}
-           >
-               <div><p>hello this is a message</p></div>
-           </InfoWindow>
-        }
-
-
-
-      const GettingStartedGoogleMap = withGoogleMap(props => (
-          <GoogleMap
-              defaultZoom={3}
-              defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
-          >
-              <MarkerClusterer
-                  averageCenter
-                  enableRetinaIcons
-                  gridSize={60} onMouseOver={this.onMouseOver}>
-              {this.props.markers.map((marker,index) => (
-                  <Marker
-                      position={{ lat: marker.lat, lng: marker.lng}}
-                      key={index}  zIndex={12323}
-                  />
-              ))}
-
-              </MarkerClusterer>
-              {infoWindow}
-          </GoogleMap>
-              ));
-
-    return <GettingStartedGoogleMap
-        defaultZoom={3}
-        defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
-        containerElement={
-            <div style={{ height:`100%`}} />}
-        mapElement={
-            <div style={{ height: `100%`}} />}/>
-  }
 }
 
 export default Map;

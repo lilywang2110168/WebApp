@@ -1,15 +1,30 @@
 /* Copyright G. Hemingway @2017 - All rights reserved */
 "use strict";
 
-let _       = require('underscore')
+let _       = require('underscore');
 
+var spawn = require('child_process').spawn,
+    py    = spawn('python', ['TestPySpark.py']),
+    data = [1,2,3,4,5,6,7,8,9],
+    dataString = '';
+
+py.stdout.on('data', function(data){
+    dataString += data.toString();
+});
+py.stdout.on('end', function(){
+    console.log("The sum of the integers is:", dataString);
+});
+py.stdin.write(JSON.stringify(data));
+py.stdin.end();
 
 module.exports = (app) => {
+    //var spawn = require('child-process-close').spawn ,
+        //py = spawn('python', ['testPySpark.py']);
     //sends back the products that belong to this brand
     app.get('/v1/brand/:brandname', function(req, res) {
         let data=[{
             id:12345,
-            name: "iPad",
+            name: "ipadMini",
             image: "https://cdn.pastemagazine.com/www/articles/iPad%20Air.jpg",
             description: "The iPad is a 9.7 inch touch screen tablet PC made by Apple."},
             {
@@ -30,14 +45,16 @@ module.exports = (app) => {
             image:"https://store.storeimages.cdn-apple.com/8750/as-images.apple.com/is/image/AppleInc/aos/published/images/M/AC/MACBOOKAIR/MACBOOKAIR?wid=500&hei=298&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=lA5lr0"
         };
         res.status(200).send(data);
+
     });
 
 
             //sends back analytics
             app.get('/v1/analytics/:productID', function(req, res) {
-            let data={
+                var PythonShell = require('python-shell');
+                let data={
                 id:123,
-                name: 'Macbook Pro',
+                name: 'Apple 13" MacBook Pro, Retina Display',
                 features:['screen size', "word processing", 'size',"performance", 'price'],
                 featureScores:[4.5, 4.14, 4.3, 4.3, 4.2, 4.2],
                 featureSummaries: ["This computer is a wonderful laptop computer with a nice screen size",
@@ -47,9 +64,10 @@ module.exports = (app) => {
                     "Pay a few dollars more for a quality product (Mailbug) and far more useful",
                     "The new lower price and the free double RAM really make this hard to pass up"],
                 graph:"This is a demographics graph",
-                description: "MacBook Pro is faster and more powerful than before, yet remarkably thin and light. ",
-                image:"https://d3nevzfk7ii3be.cloudfront.net/igi/Fjh4QLohID2A5xd4.standard",
+                description:"Just when you thought your MacBook Pro was state of the art, Apple introduces the MF839LL/A 13\" MacBook Pro with new advanced processing power and graphics. New connectivity capabilities potentially speed large file transfers beyond any current connection. All MacBook Pro models are state-of-the-art. This new one takes it out to another edge. New Thunderbolt technology lets you connect high-performance peripherals and high-resolution displays to one port - with data transfer rates up to 10 Gbps.",
+                image:"https://crdms.images.consumerreports.org/prod/products/cr-legacy/production/products/testedmodel/profile/cr/jpg/598/374087-laptopcomputers-apple-macbookpro13inchwithretinadisplaymf839lla.jpg",
                 percentFemale:0.4,
+
                 coordinates:[ {"lat": 17.189877, "lng": -88.49765},
                     {"lat": 38.24935809999999, "lng": -122.0399663},
                     {"lat": 41.2033216, "lng": -77.1945247},
@@ -249,6 +267,7 @@ module.exports = (app) => {
                     'adfasdfasdf']
             };
         res.status(200).send(data);
+
     });
 
 

@@ -7,7 +7,7 @@ let path            = require('path'),
     logger          = require('morgan'),
     _               = require('underscore');
 
-let port = process.env.PORT ? process.env.PORT : 8080;
+let port = process.env.PORT ? process.env.PORT : 8085;
 let env = process.env.NODE_ENV ? process.env.NODE_ENV : 'dev';
 
 /**********************************************************************************************************/
@@ -18,11 +18,7 @@ if (env !== 'test') app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, '../../public')));
 app.engine('pug', require('pug').__express);
 app.set('views', __dirname);
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Import our routes
-require('./routes')(app);
-
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 /**********************************************************************************************************/
