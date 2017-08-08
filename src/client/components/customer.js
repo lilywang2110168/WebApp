@@ -4,7 +4,7 @@
 
 import React, { Component }     from 'react';
 import {Link} from 'react-router';
-import {Header} from './header';
+import {Header} from './header_ruchi';
 /*************************************************************************/
 
 export class Customer extends Component {

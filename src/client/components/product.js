@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import Chart from './Chart.js';
 import Map from './map.js';
-import {Header2} from './header2';
+import {Header} from './header_ruchi';
 
 
 /*************************************************************************/
@@ -39,7 +39,6 @@ export class Product extends Component {
                 return <tr key={index}>
                     <th>{product}</th>
                     <th>{this.state.data.featureScores[index]}</th>
-                    <th>{this.state.data.featureSummaries[index]}</th>
                 </tr>;
             });
 
@@ -59,7 +58,6 @@ export class Product extends Component {
                         <tr>
                             <th>Feature</th>
                             <th>Score</th>
-                            <th>Summary</th>
                         </tr>
                         </thead>
 
@@ -77,4 +75,4 @@ export class Product extends Component {
                         <Chart/></div>
                 </div></div>;
         }
-        return <div><Header2/><div>{analytics}</div></div>}}
+        return <div><Header/><div>{analytics}</div></div>}}

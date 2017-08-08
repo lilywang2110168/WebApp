@@ -19,7 +19,9 @@ export class Header2 extends Component {
 
         return<div><nav className="navbar navbar-toggleable-md navbar-light bg-faded">
             <div className="navbar-header">
-                <a className="navbar-brand" href="#">Amazon project</a>
+                <a class="navbar-brand>img" href="#">
+                    <img src="../../../public/images/amazonReviews.tiff" alt=""/>
+                    </a>
             </div>
             <ul className="nav navbar-nav">
                 <li><a href="#">Home</a></li>
