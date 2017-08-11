@@ -101,7 +101,7 @@ export class Product extends Component {
                 });
 
                 let  featuresTable = this.state.data.features.map((feature, index)=> {
-                    if(feature.featureName==="machine"){
+                    if(feature.featureName==="machine" ||feature.featureName==="window" ){
                     }else{
                     return <tr key={index}>
                         <th  className="tableText">{feature.featureName}</th>

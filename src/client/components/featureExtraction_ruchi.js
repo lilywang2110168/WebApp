@@ -230,7 +230,6 @@ export const FeatureExtraction = () => (
                                     <br/>
                                     <li> Multimodel (SQL, Object Model, DocDB) </li><br/>
                                     <li> REST API </li><br/>
-                                    <li> Spark Connector</li><br/>
                                     <li> IRIS Natural Language Processing</li><br/>
                                     <li> InterSystems Cloud Manager</li><br/>
                                     <li> External technologies</li>
