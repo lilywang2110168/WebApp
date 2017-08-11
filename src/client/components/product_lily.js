@@ -242,7 +242,7 @@ export class Product extends Component {
 
                    <div className="row">
                        <div className="col-xs-1"/>
-                       <div className="col-xs-4"><Chart male={this.state.demographicsData.numMaleReviewers}
+                       <div className="col-xs-4" height="100%"><Chart male={this.state.demographicsData.numMaleReviewers}
                        female={this.state.demographicsData.numFemaleReviewers}/> <br/></div>
                        <div className="col-xs-3 panelButton">
 
@@ -278,7 +278,6 @@ export class Product extends Component {
             </ul>
                 {featuresAnalysis}
                 {demographics}
-                <br/>
         </div>
     }
 }

@@ -231,7 +231,7 @@ export const FeatureExtraction = () => (
                                     </div>
                                     <li> Multimodel (SQL, Object Model, DocDB) </li>
                                     <li> REST API </li>
-                                    <li> IRIS Natural Language Processing</li>
+                                    <li> InterSystems IRIS Natural Language Processing</li>
                                     <li> InterSystems Cloud Manager</li>
                                     <li> External technologies</li>
                                     <div>

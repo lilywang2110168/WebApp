@@ -6783,7 +6783,7 @@ var FeatureExtraction = exports.FeatureExtraction = function FeatureExtraction()
                                     _react2.default.createElement(
                                         'li',
                                         null,
-                                        ' IRIS Natural Language Processing'
+                                        ' InterSystems IRIS Natural Language Processing'
                                     ),
                                     _react2.default.createElement(
                                         'li',
@@ -7551,7 +7551,7 @@ var Product = exports.Product = function (_Component) {
                                 _react2.default.createElement('div', { className: 'col-xs-1' }),
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'col-xs-4' },
+                                    { className: 'col-xs-4', height: '100%' },
                                     _react2.default.createElement(_Chart_lily2.default, { male: this.state.demographicsData.numMaleReviewers,
                                         female: this.state.demographicsData.numFemaleReviewers }),
                                     ' ',
@@ -7632,8 +7632,7 @@ var Product = exports.Product = function (_Component) {
                     )
                 ),
                 featuresAnalysis,
-                demographics,
-                _react2.default.createElement('br', null)
+                demographics
             );
         }
     }]);
