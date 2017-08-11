@@ -4,19 +4,22 @@
 // Necessary modules
 import React, {Component}     from 'react';
 import { render }               from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory }  from 'react-router'
-import { Landing }              from './components/landing';
-import { Customer }                from './components/customer';
-import { Business }               from './components/business';
-import { Product}              from './components/product';
-
+import { Router, Route, IndexRoute, browserHistory }  from 'react-router';
+import { Landing }              from './components/landing_ruchi3';
+import {LearnMore}                  from './components/learnMore_ruchi';
+import { Customer }                from './components/customer_lily';
+import { Business }               from './components/business_lily';
+import { Product}              from './components/product_lily';
+import {Contact}               from './components/about_ruchi';
+import {FeatureExtraction}     from './components/featureExtraction_ruchi';
 
 
 // Bring bootstrap into the picture
+
 require('./app.css');
 
-/*************************************************************************/
 
+/*************************************************************************/
 class MyApp extends Component {
     constructor(props) {
         super(props);
@@ -32,12 +35,14 @@ class MyApp extends Component {
 
 render(
     <Router history={browserHistory}>
-        <Route path="/" component={MyApp}>
+        <Route path="/" component={MyApp} >
             <IndexRoute component={Landing}/>
-            <Route path="/buyer" component={Customer}/>
+            <Route path="/overview" component={LearnMore} />
+            <Route path="/buyer" component={Customer} />
             <Route path="/seller" component={Business} />
             <Route path="/product/:id" component={Product}/>
-            <Route path="/header"/>
+            <Route path="/contact" component={Contact}/>
+            <Route path="/presentation" component={FeatureExtraction}/>
         </Route>
     </Router>,
     document.getElementById('mainDiv')
