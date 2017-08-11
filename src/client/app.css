@@ -514,22 +514,22 @@ List Group Code
  */
 
 .list-group{
-    font-size: large;
+    font-size: x-large;
 }
 
 .list-group-item{
     color:black;
-    font-size: large;
+    font-size: x-large;
 }
 
 .list-group-item-info{
     color:black;
-    font-size: large;
+    font-size: x-large;
 }
 
 .list-group-item-warning{
     color:black;
-    font-size: large;
+    font-size: x-large;
 }
 
 
@@ -564,3 +564,4 @@ Picture Hover
     width:100%;
 
 }
+

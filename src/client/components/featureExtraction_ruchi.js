@@ -188,14 +188,16 @@ export const FeatureExtraction = () => (
         <br></br>
         <br></br>
         <br></br>
-        <br></br>
-        <br></br>
 
 
         <div className="content-section-b">
             <div className="container-fluid">
 
                 <div className="col-lg-6">
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
                     <br></br>
                     <br></br>
                     <br></br>
@@ -227,11 +229,10 @@ export const FeatureExtraction = () => (
                                         - Intuitiveness <br/>
                                         - Scalability <br/>
                                     </div>
-                                    <br/>
-                                    <li> Multimodel (SQL, Object Model, DocDB) </li><br/>
-                                    <li> REST API </li><br/>
-                                    <li> IRIS Natural Language Processing</li><br/>
-                                    <li> InterSystems Cloud Manager</li><br/>
+                                    <li> Multimodel (SQL, Object Model, DocDB) </li>
+                                    <li> REST API </li>
+                                    <li> IRIS Natural Language Processing</li>
+                                    <li> InterSystems Cloud Manager</li>
                                     <li> External technologies</li>
                                     <div>
                                         - Natural Language Toolkit <br/>
